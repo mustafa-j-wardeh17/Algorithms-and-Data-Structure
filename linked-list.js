@@ -121,19 +121,78 @@ class LinkedList {
   }
 }
 
-const mergeTwoLinkedList = (ls1, ls2) => {
 
-}
 
 // Example usage
 const myLinkedList = new LinkedList();
+
 myLinkedList.append(10);
 myLinkedList.append(5);
 myLinkedList.append(16);
 myLinkedList.prepend(1);
 myLinkedList.insert(1720, 3);
-myLinkedList.delete(1)
-// myLinkedList.delete(4)
-//myLinkedList.reverse()
 myLinkedList.printInArray(); // Output: [1,10,5,1720,16]
-console.log(myLinkedList.sum())
+
+myLinkedList.delete(1)
+myLinkedList.printInArray(); // Output: [1,5,1720,16]
+
+// myLinkedList.delete(4)
+myLinkedList.reverse()
+myLinkedList.printInArray(); // Output: [16,1720,5,1]
+
+//--------------------------------------------
+//-------------Second Linked List-------------
+//--------------------------------------------
+
+const myLinkedList2 = new LinkedList();
+myLinkedList2.append(16);
+myLinkedList2.append(8);
+myLinkedList2.prepend(2);
+myLinkedList2.insert(17, 1);
+myLinkedList2.printInArray(); // Output: [2,17,16,8]
+
+myLinkedList2.reverse()
+myLinkedList2.printInArray(); // Output: [8,16,17,2]
+
+
+console.log(myLinkedList) // Output: 1742
+
+//--------------------------------------------
+//------------Merge 2 Linked List-------------
+//--------------------------------------------
+
+// ls1->ls2->ls1->ls2->ls1
+const mergeTwoLinkedList = (ls1, ls2) => {
+  let current1 = ls1.head;
+  let current2 = ls2.head;
+  let MergedLinkedList = new LinkedList()
+  let count = 0;
+  while (current1 || current2) {
+    if (!current1) {
+      MergedLinkedList.append(current2.value);
+      current2 = current2.next;
+    }
+    else if (!current2) {
+      MergedLinkedList.append(current2.value);
+      current2 = current2.next;
+    }
+    else {
+      if (count % 2 === 0) {
+        console.log(current1.value)
+        MergedLinkedList.append(current1.value)
+        current1 = current1.next;
+      } else {
+        MergedLinkedList.append(current2.value)
+        console.log(current2.value)
+        current2 = current2.next;
+      }
+      count++;
+    }
+  }
+  return MergedLinkedList;
+}
+const myMergedLinkedList = mergeTwoLinkedList(myLinkedList, myLinkedList2)
+
+console.log(myMergedLinkedList)
+
+
