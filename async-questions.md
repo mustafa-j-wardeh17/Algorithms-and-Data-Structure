@@ -157,7 +157,7 @@ console.log('End of script');
 Start of async function
 End of script
 After 1 second
-After another 0.5 seconds
+After another 0.5 seconds 
 ```
 
 ---
